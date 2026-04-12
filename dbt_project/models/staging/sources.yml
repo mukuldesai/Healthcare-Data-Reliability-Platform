@@ -1,0 +1,80 @@
+version: 2
+
+sources:
+  - name: raw
+    database: HEALTHCARE_RELIABILITY_DB
+    schema: RAW
+    tables:
+      - name: raw_patients
+      - name: raw_encounters
+      - name: raw_claims
+      - name: raw_claim_transactions
+      - name: raw_providers
+      - name: raw_organizations
+      - name: raw_payers
+
+models:
+  - name: stg_patients
+    description: "Standardized patient staging model"
+    columns:
+      - name: patient_id
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_encounters
+    description: "Standardized encounter staging model"
+    columns:
+      - name: encounter_id
+        tests:
+          - not_null
+          - unique
+      - name: patient_id
+        tests:
+          - not_null
+
+  - name: stg_claims
+    description: "Standardized claims staging model"
+    columns:
+      - name: claim_id
+        tests:
+          - not_null
+          - unique
+      - name: patient_id
+        tests:
+          - not_null
+
+  - name: stg_claim_transactions
+    description: "Standardized claim transaction staging model"
+    columns:
+      - name: transaction_id
+        tests:
+          - not_null
+          - unique
+      - name: claim_id
+        tests:
+          - not_null
+
+  - name: stg_providers
+    description: "Standardized provider staging model"
+    columns:
+      - name: provider_id
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_organizations
+    description: "Standardized organization staging model"
+    columns:
+      - name: organization_id
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_payers
+    description: "Standardized payer staging model"
+    columns:
+      - name: payer_id
+        tests:
+          - not_null
+          - unique

@@ -1,0 +1,22 @@
+select
+    trim(payer_id) as payer_id,
+    trim(payer_name) as payer_name,
+    trim(ownership) as ownership,
+    trim(city) as city,
+    trim(state_headquartered) as state_headquartered,
+    trim(zip_code) as zip_code,
+    amount_covered,
+    amount_uncovered,
+    revenue,
+    covered_encounters,
+    uncovered_encounters,
+    covered_medications,
+    uncovered_medications,
+    covered_procedures,
+    uncovered_procedures,
+    covered_immunizations,
+    uncovered_immunizations,
+    unique_customers,
+    qols_avg,
+    member_months
+from {{ source('raw', 'raw_payers') }}
