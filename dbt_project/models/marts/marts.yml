@@ -1,0 +1,124 @@
+version: 2
+
+models:
+  - name: dim_patient
+    description: "Patient dimension table"
+    columns:
+      - name: patient_id
+        tests:
+          - not_null
+          - unique
+
+  - name: dim_provider
+    description: "Provider dimension table"
+    columns:
+      - name: provider_id
+        tests:
+          - not_null
+          - unique
+      - name: organization_id
+        tests:
+          - not_null
+
+  - name: dim_hospital
+    description: "Hospital dimension table"
+    columns:
+      - name: organization_id
+        tests:
+          - not_null
+          - unique
+
+  - name: dim_payer
+    description: "Payer dimension table"
+    columns:
+      - name: payer_id
+        tests:
+          - not_null
+          - unique
+
+  - name: fct_encounters
+    description: "Encounter fact table"
+    columns:
+      - name: encounter_id
+        tests:
+          - not_null
+          - unique
+      - name: patient_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_patient')
+                field: patient_id
+      - name: provider_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_provider')
+                field: provider_id
+      - name: organization_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_hospital')
+                field: organization_id
+      - name: payer_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_payer')
+                field: payer_id
+
+  - name: fct_claims
+    description: "Claims fact table"
+    columns:
+      - name: claim_id
+        tests:
+          - not_null
+          - unique
+      - name: patient_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_patient')
+                field: patient_id
+      - name: provider_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_provider')
+                field: provider_id
+
+  - name: fct_claim_transactions
+    description: "Claim transaction fact table"
+    columns:
+      - name: transaction_id
+        tests:
+          - not_null
+          - unique
+      - name: claim_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('fct_claims')
+                field: claim_id
+      - name: patient_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_patient')
+                field: patient_id
+      - name: provider_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_provider')
+                field: provider_id

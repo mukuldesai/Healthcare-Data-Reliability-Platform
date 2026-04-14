@@ -1,4 +1,6 @@
+# ========================
 # Python
+# ========================
 __pycache__/
 *.pyc
 *.pyo
@@ -7,48 +9,61 @@ __pycache__/
 venv/
 env/
 
+# ========================
 # dbt
+# ========================
 dbt_packages/
 target/
 logs/
+
+# local dbt profiles
+.dbt/
 profiles.yml
 
+# ========================
 # Airflow
+# ========================
 airflow/logs/
 airflow/airflow.db
 
-# Data files
+# ========================
+# Data (DO NOT push raw data)
+# ========================
 data/raw/
 data/processed/
-*.csv
-*.parquet
-*.xlsx
 
-# Local OS / editor
+# allow optional small samples only
+# !data/sample/
+
+# ========================
+# Synthea (exclude completely)
+# ========================
+synthea/
+
+# ========================
+# OS / Editors
+# ========================
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
 
+# ========================
 # Installers
+# ========================
 *.exe
 *.msi
 
-# Synthea local clone and outputs
-synthea/output/
-synthea/build/
-synthea/.gradle/
-synthea/lib/
-
-# If you want to exclude full synthea repo entirely, uncomment this:
-# synthea/
-
-# Secrets / config
+# ========================
+# Secrets / Config
+# ========================
 .env
 .env.*
 *.pem
 *.key
 *.p8
 
+# ========================
 # Snowflake / credentials
+# ========================
 **/profiles.yml
