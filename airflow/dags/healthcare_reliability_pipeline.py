@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from datetime import datetime, timedelta
 from airflow import DAG
-from airflow.operators.bash import BashOperator
+from airflow.operators.bash import BashOperator # type: ignore
 
 
 default_args = {
