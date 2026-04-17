@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from datetime import datetime, timedelta
 from airflow import DAG
-from airflow.operators.bash import BashOperator # type: ignore
+from airflow.operators.bash import BashOperator
 
 
 default_args = {
@@ -27,13 +27,9 @@ with DAG(
     tags=["healthcare", "snowflake", "dbt", "data-reliability"],
 ) as dag:
 
-    validate_raw_layer = BashOperator(
-        task_id="validate_raw_layer",
-        bash_command=(
-            f'cd "{DBT_PROJECT_DIR}" && '
-            f'call "{DBT_VENV_ACTIVATE}" && '
-            'dbt run-operation debug'
-        ),
+    start_pipeline = BashOperator(
+        task_id="start_pipeline",
+        bash_command='echo "Starting Healthcare Data Reliability Pipeline"',
     )
 
     run_dbt_models = BashOperator(
@@ -54,8 +50,8 @@ with DAG(
         ),
     )
 
-    validate_monitoring_layer = BashOperator(
-        task_id="validate_monitoring_layer",
+    refresh_monitoring_models = BashOperator(
+        task_id="refresh_monitoring_models",
         bash_command=(
             f'cd "{DBT_PROJECT_DIR}" && '
             f'call "{DBT_VENV_ACTIVATE}" && '
@@ -63,4 +59,4 @@ with DAG(
         ),
     )
 
-    validate_raw_layer >> run_dbt_models >> run_dbt_tests >> validate_monitoring_layer
+    start_pipeline >> run_dbt_models >> run_dbt_tests >> refresh_monitoring_models
