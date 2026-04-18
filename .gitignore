@@ -67,3 +67,9 @@ Thumbs.db
 # Snowflake / credentials
 # ========================
 **/profiles.yml
+
+# ========================
+# Streamlit secrets
+# ========================
+.streamlit/
+**/secrets.toml
