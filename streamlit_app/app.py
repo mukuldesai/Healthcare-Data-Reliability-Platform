@@ -74,7 +74,7 @@ if section == "Pipeline Health":
         order by model_name
     """)
 
-    st.dataframe(df, use_container_width=True)
+    st.dataframe(df, width="stretch")
 
     status_counts = df["PIPELINE_STATUS"].value_counts().reset_index()
     status_counts.columns = ["Status", "Count"]
@@ -86,7 +86,8 @@ if section == "Pipeline Health":
         title="Pipeline Status Summary"
     )
 
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
+    
 
 
 # -----------------------------
@@ -101,7 +102,7 @@ elif section == "Row Counts":
         order by row_count desc
     """)
 
-    st.dataframe(df, use_container_width=True)
+    st.dataframe(df, width="stretch")
 
     fig = px.bar(
         df,
@@ -110,7 +111,7 @@ elif section == "Row Counts":
         title="Rows by Table / Model"
     )
 
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 
 # -----------------------------
@@ -125,7 +126,7 @@ elif section == "Freshness":
         order by latest_record_timestamp desc
     """)
 
-    st.dataframe(df, use_container_width=True)
+    st.dataframe(df, width="stretch")
 
 
 # -----------------------------
@@ -169,4 +170,4 @@ elif section == "Business Snapshot":
         title="Top Hospitals by Utilization"
     )
 
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
