@@ -24,7 +24,7 @@ This platform solves that by building a production-style reliability layer on to
 
 ## Architecture
 
-![Architecture Diagram](docs/Healthcare_Architecture.png)
+![Architecture Diagram](images/Healthcare_Architecture.png)
 
 **Data flow:**
 ```
@@ -49,19 +49,19 @@ Streamlit Dashboard — live pipeline observability + business KPIs
 
 **Pipeline Health — model-level quality checks, null counts, duplicate detection**
 
-![Pipeline Health Dashboard](docs/Pipeline_Health_Dashboard.png)
+![Pipeline Health Dashboard](images/Pipeline_Health_Dashboard.png)
 
 **Row Count Monitoring — raw vs mart row parity validation across all models**
 
-![Row Count Monitoring](docs/Row_Count_Monitoring.png)
+![Row Count Monitoring](images/Row_Count_Monitoring.png)
 
 **Freshness Monitoring — latest record timestamps vs expected refresh cadence**
 
-![Freshness Monitoring](docs/Freshness_Monitoring.png)
+![Freshness Monitoring](images/Freshness_Monitoring.png)
 
 **Business Snapshot — executive KPIs: encounters, claims, hospital utilization**
 
-![Business Snapshot](docs/Business_Snapshot.png)
+![Business Snapshot](images/Business_Snapshot.png)
 
 ---
 
